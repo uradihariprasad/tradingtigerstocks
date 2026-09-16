@@ -2,6 +2,6 @@
   "dialect": "postgresql",
   "schema": "./src/db/schema.ts",
   "dbCredentials": {
-    "url": "postgresql://postgres:postgres@127.0.0.1:5432/app_db"
+    "url": "postgresql://topbest10:8GAed1V7x4LPGTYO4DrXuN0LqWtqjud2@dpg-da4l2ujbc2fs73bip92g-a/topbest10_db"
   }
 }
