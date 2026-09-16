@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #04060b;
+  --bg-2: #070b12;
+  --panel: rgba(148, 184, 255, 0.028);
+  --panel-solid: #090d16;
+  --line: #141d2c;
+  --line-soft: #0f1622;
+  --txt: #d7e2f0;
+  --muted: #64748e;
+  --faint: #3d4b61;
+  --long: #34d399;
+  --short: #f87171;
+  --wait: #fbbf24;
+  --cyan: #22d3ee;
+  --violet: #a78bfa;
+  --amber: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--txt);
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Space Grotesk", "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(1200px 500px at 15% -10%, rgba(34, 211, 238, 0.05), transparent 60%),
+    radial-gradient(1000px 480px at 85% -10%, rgba(167, 139, 250, 0.05), transparent 60%),
+    linear-gradient(rgba(18, 27, 42, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 27, 42, 0.35) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+}
+
+.mono {
+  font-family: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(148, 184, 255, 0.035), rgba(148, 184, 255, 0.014));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.panel-inset {
+  background: rgba(4, 7, 12, 0.6);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: rgba(10, 16, 26, 0.7);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #1c2940;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+.pulse-dot {
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+@keyframes flowDash {
+  to { stroke-dashoffset: -20; }
+}
+.flow-line {
+  stroke-dasharray: 4 6;
+  animation: flowDash 1.1s linear infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fadeUp 0.45s cubic-bezier(0.22, 0.8, 0.32, 1) both;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, rgba(148, 184, 255, 0.04) 25%, rgba(148, 184, 255, 0.09) 40%, rgba(148, 184, 255, 0.04) 55%);
+  background-size: 800px 100%;
+  animation: shimmer 1.8s infinite linear;
+}
+
+.crosshair-v, .crosshair-h { pointer-events: none; }
+
+::selection {
+  background: rgba(52, 211, 153, 0.25);
+}
+
+/* Mobile support — same visual system, safer dimensions and touch behavior. */
+.mobile-scroll {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+}
+
+@media (max-width: 639px) {
+  body {
+    background-size: auto, auto, 32px 32px, 32px 32px;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .panel {
+    border-radius: 11px;
+  }
+
+  .panel-inset {
+    border-radius: 8px;
+  }
+
+  button,
+  a.chip {
+    touch-action: manipulation;
+  }
+
+  button.chip,
+  a.chip {
+    min-height: 34px;
+  }
+
+  /* Prevent iOS Safari from zooming the page when a settings/token field focuses. */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  .mobile-drawer {
+    height: 100dvh;
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  }
+}

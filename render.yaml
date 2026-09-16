@@ -1,0 +1,32 @@
+# Render Blueprint — PULSE · NSE F&O Intraday Scanner
+# One-click deploy: Render Dashboard → New → Blueprint → point at this repo.
+# Docs: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: pulse-fo-scanner
+    runtime: node
+    plan: starter # upgrade for always-on; free plan sleeps when idle
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: pulse-fo-db
+          property: connectionString
+      # Optional platform secrets — set your own in the Render dashboard if desired:
+      # - key: NEXT_TELEMETRY_DISABLED
+      #   value: "1"
+
+databases:
+  - name: pulse-fo-db
+    plan: free # free Postgres expires after 30 days — use a paid plan for production
+    databaseName: app_db
+    user: scanner
+    postgresMajorVersion: "16"
