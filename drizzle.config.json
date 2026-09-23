@@ -2,6 +2,6 @@
   "dialect": "postgresql",
   "schema": "./src/db/schema.ts",
   "dbCredentials": {
-    "url": "postgresql://topbest10:8GAed1V7x4LPGTYO4DrXuN0LqWtqjud2@dpg-da4l2ujbc2fs73bip92g-a/topbest10_db"
+    "url": "postgresql://trade_database_sb3f_user:82BDk6DS3vlYObPclvOhaD6tPpHP4fit@dpg-daptr92d0e5s73adftvg-a/trade_database_sb3f"
   }
 }
